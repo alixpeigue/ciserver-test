@@ -48,7 +48,7 @@ jobs:
           name: ciserver
           path: build/libs/ciserver-1.0-SNAPSHOT-all.jar
       - name: Upload test reports
-        uses: aactions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: report
           path: build/reports/tests/test
