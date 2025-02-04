@@ -20,7 +20,7 @@ class GitServiceTest {
 
 	@Test
 	void testCloneNoError() {
-		final String expected = "git clone a/b http://source";
+		final String expected = "git clone a/b http://sourc";
 		when(commandService.execute(expected)).thenReturn(0);
 		gitService.clone(Path.of("a", "b"), "http://source");
 		verify(commandService).execute(expected);

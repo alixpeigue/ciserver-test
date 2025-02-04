@@ -2,6 +2,7 @@ package app.ciserver;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.javalin.Javalin;
 import io.javalin.json.JavalinJackson;
 import io.javalin.rendering.template.JavalinThymeleaf;
@@ -37,6 +38,7 @@ public class Main {
 			ctx.render("index.html", model("name", user.name));
 		});
 		app.post("/hook", ctx -> {
+			Hook hook = ctx.bodyAsClass(Hook.class);
 			LOGGER.info(ctx.body());
 		});
 	}
@@ -69,4 +71,9 @@ public class Main {
 class User {
 	public String name;
 	public int age;
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class Hook {
+	public String after;
 }
