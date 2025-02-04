@@ -34,7 +34,7 @@ application {
 }
 
 tasks.named<JavaExec>("run") {
-    val env = project.findProperty("env") ?: "dev"
+    val env = System.getenv("JAVA_ENV") ?: "dev"
     environment("JAVA_ENV", env)
 }
 
@@ -49,8 +49,7 @@ spotless {
         importOrder()
         removeUnusedImports()
         // apply a specific flavor of google-java-format
-        eclipse()
-            .sortMembersEnabled(true)
+        eclipse().sortMembersEnabled(true)
         // fix formatting of type annotations
         formatAnnotations()
     }

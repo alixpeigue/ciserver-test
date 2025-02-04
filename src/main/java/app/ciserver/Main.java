@@ -48,16 +48,16 @@ public class Main {
 			templateResolver = new FileTemplateResolver();
 			String templatePath = Paths.get("src/main/resources/templates/").toAbsolutePath().toString();
 			templateResolver.setPrefix(templatePath + "/"); // Use absolute file path
+			templateResolver.setCacheable(false);
 		} else {
 			// In prod, use ClassLoaderTemplateResolver for performance
 			templateResolver = new ClassLoaderTemplateResolver();
 			templateResolver.setPrefix("/templates/");
+			templateResolver.setCacheable(true);
 		}
 
 		templateResolver.setTemplateMode(TemplateMode.HTML);
 		templateResolver.setSuffix(".html");
-
-		templateResolver.setCacheable(false);
 
 		final var templateEngine = new TemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver);
